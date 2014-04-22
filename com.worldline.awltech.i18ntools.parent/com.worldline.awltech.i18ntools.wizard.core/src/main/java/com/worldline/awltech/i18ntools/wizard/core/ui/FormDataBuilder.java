@@ -1,7 +1,7 @@
 /**
- * Optimus, framework for Model Transformation
+ * I18N Tools
  *
- * Copyright (C) 2013 Worldline or third-party contributors as
+ * Copyright (C) 2014 Worldline or third-party contributors as
  * indicated by the @author tags or express copyright attribution
  * statements applied by the authors.
  *
