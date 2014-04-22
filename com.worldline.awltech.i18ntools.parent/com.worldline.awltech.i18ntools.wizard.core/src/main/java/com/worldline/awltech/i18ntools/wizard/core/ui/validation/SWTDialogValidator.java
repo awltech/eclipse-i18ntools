@@ -11,6 +11,12 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
+/**
+ * SWT Dialog Text Validation implementation.
+ * 
+ * @author mvanbesien
+ *
+ */
 public class SWTDialogValidator {
 
 	private final Label errorLabel;

@@ -18,6 +18,16 @@ import org.osgi.service.prefs.BackingStoreException;
 import com.worldline.awltech.i18ntools.wizard.core.Activator;
 import com.worldline.awltech.i18ntools.wizard.core.RefactoringWizardMessages;
 
+/**
+ * Refactoring graphical wizard Configuration.
+ * 
+ * Such configuration is stored locally in the .settings folder. Hence, it is
+ * adapted to the current project's internationalization process and can be
+ * shared to other developers through SCMs.
+ * 
+ * @author mvanbesien
+ * 
+ */
 public class RefactoringWizardConfiguration {
 
 	private static final String SRC_MAIN_RESOURCES = "src/main/resources";
@@ -73,9 +83,8 @@ public class RefactoringWizardConfiguration {
 	}
 
 	public String getResourceSourceFolder() {
-		return this.preferences.get(RefactoringWizardConfiguration.RESOURCES_SOURCE_FOLDER_NAME, this
-				.getSourceFolder(RefactoringWizardConfiguration.SRC_MAIN_RESOURCES,
-						RefactoringWizardConfiguration.SRC, null));
+		return this.preferences.get(RefactoringWizardConfiguration.RESOURCES_SOURCE_FOLDER_NAME, this.getSourceFolder(
+				RefactoringWizardConfiguration.SRC_MAIN_RESOURCES, RefactoringWizardConfiguration.SRC, null));
 	}
 
 	/**

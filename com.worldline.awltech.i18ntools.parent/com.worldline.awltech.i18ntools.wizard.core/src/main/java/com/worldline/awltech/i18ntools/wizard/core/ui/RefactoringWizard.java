@@ -31,6 +31,12 @@ import com.worldline.awltech.i18ntools.wizard.core.ui.validation.PackageTextVali
 import com.worldline.awltech.i18ntools.wizard.core.ui.validation.SWTDialogValidator;
 import com.worldline.awltech.i18ntools.wizard.core.ui.validation.TypeTextValidator;
 
+/**
+ * Refactoring graphical wizard implementation.
+ * 
+ * @author mvanbesien
+ * 
+ */
 public class RefactoringWizard {
 
 	private static final String IMAGE_PATH = "icons/export_wiz.gif";
@@ -146,8 +152,7 @@ public class RefactoringWizard {
 		final Label enumPrefixLabel = new Label(messageGroup, SWT.NONE);
 		enumPrefixLabel.setText(RefactoringWizardMessages.WIZARD_LABEL_ENUM_LITERAL.value());
 		enumPrefixLabel.setToolTipText(RefactoringWizardMessages.WIZARD_TOOLTIP_ENUM_LITERAL.value());
-		FormDataBuilder.on(enumPrefixLabel).top(resourceBundleText).left()
-				.width(RefactoringWizard.LABEL_WIDTH);
+		FormDataBuilder.on(enumPrefixLabel).top(resourceBundleText).left().width(RefactoringWizard.LABEL_WIDTH);
 
 		final Text enumPrefixText = new Text(messageGroup, SWT.BORDER);
 		enumPrefixText.setText(configuration.getLastLiteralPrefix());
@@ -167,14 +172,12 @@ public class RefactoringWizard {
 
 		final Text sourceFolderText = new Text(advancedGroup, SWT.BORDER);
 		sourceFolderText.setText(configuration.getJavaSourceFolder());
-		FormDataBuilder.on(sourceFolderText).top().left(sourceFolderLabel).right()
-				.width(RefactoringWizard.TEXT_WIDTH);
+		FormDataBuilder.on(sourceFolderText).top().left(sourceFolderLabel).right().width(RefactoringWizard.TEXT_WIDTH);
 
 		final Label resourceFolderLabel = new Label(advancedGroup, SWT.NONE);
 		resourceFolderLabel.setText(RefactoringWizardMessages.LABEL_RESOURCE_FOLDER.value());
 		resourceFolderLabel.setToolTipText(RefactoringWizardMessages.TOOLTIP_RESOURCE_FOLDER.value());
-		FormDataBuilder.on(resourceFolderLabel).left().top(sourceFolderText)
-				.width(RefactoringWizard.LABEL_WIDTH);
+		FormDataBuilder.on(resourceFolderLabel).left().top(sourceFolderText).width(RefactoringWizard.LABEL_WIDTH);
 
 		final Text resourceFolderText = new Text(advancedGroup, SWT.BORDER);
 		resourceFolderText.setText(configuration.getResourceSourceFolder());

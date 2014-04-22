@@ -3,6 +3,13 @@ package com.worldline.awltech.i18ntools.wizard.core.ui.validation;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 
+/**
+ * Validation Listener, used to notify a SWT Dialog Validator instance that a
+ * validable text field has been updated.
+ * 
+ * @author mvanbesien
+ * 
+ */
 public class SWTDialogValidatorListener implements ModifyListener {
 
 	private final SWTDialogValidator validator;

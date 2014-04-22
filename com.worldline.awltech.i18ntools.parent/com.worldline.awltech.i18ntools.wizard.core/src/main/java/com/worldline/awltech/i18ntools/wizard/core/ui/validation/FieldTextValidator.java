@@ -3,6 +3,12 @@ package com.worldline.awltech.i18ntools.wizard.core.ui.validation;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jdt.core.JavaConventions;
 
+/**
+ * Validator for valid java fields names.
+ * 
+ * @author mvanbesien
+ * 
+ */
 public class FieldTextValidator implements TextValidator {
 
 	private static final String JAVA_VERSION = "1.7";
