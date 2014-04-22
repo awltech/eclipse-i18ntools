@@ -89,6 +89,16 @@ public class ResourceBundleWrapper {
 	 */
 	private final RefactoringWizardConfiguration configuration;
 
+	/**
+	 * Creates Resource Bundle Wrapper, in specified project.
+	 * 
+	 * @param javaProject
+	 *            : current project
+	 * @param packageName
+	 *            : name of the package that will contain the enumeration
+	 * @param resourceBundleName
+	 *            : used for enumeration and properties file names.
+	 */
 	public ResourceBundleWrapper(final IJavaProject javaProject, final String packageName,
 			final String resourceBundleName) {
 		this.javaProject = javaProject;
@@ -97,6 +107,15 @@ public class ResourceBundleWrapper {
 		this.configuration = new RefactoringWizardConfiguration(javaProject.getProject());
 	}
 
+	/**
+	 * Replaces, in the initial source code, a selected string by a literal and
+	 * enriches the enumeration and the properties file.
+	 * 
+	 * @param nodeFinder
+	 * @param literalName
+	 * @param resolver
+	 * @return
+	 */
 	public boolean replaceLiteral(final ASTNodeFinder nodeFinder, final String literalName,
 			final ASTExpressionResolver resolver) {
 		if (this.enumDomCompilationUnit == null) {
@@ -108,6 +127,9 @@ public class ResourceBundleWrapper {
 		return this.effectiveAddLiteral(nodeFinder, literalName, resolver);
 	}
 
+	/**
+	 * Loads Resource Bundle properties file.
+	 */
 	private void loadProperties() {
 		this.properties = new Properties();
 		final IProject project = this.javaProject.getProject();
@@ -132,6 +154,9 @@ public class ResourceBundleWrapper {
 		}
 	}
 
+	/**
+	 * Loads the currently selected compilation unit.
+	 */
 	private void loadCompilationUnit() {
 		final IProject project = this.javaProject.getProject();
 		final IResource sourceFolderResource = project.getFolder(new Path(this.configuration.getJavaSourceFolder()));
@@ -177,6 +202,12 @@ public class ResourceBundleWrapper {
 		this.enumDomCompilationUnit.recordModifications();
 	}
 
+	/**
+	 * Loads the Enumeration source template, and formats it with user
+	 * information (name, package)
+	 * 
+	 * @return
+	 */
 	private String createJavaUnitContents() {
 		StringBuilder builder = new StringBuilder();
 		final InputStream stream = ResourceBundleWrapper.class
@@ -207,6 +238,14 @@ public class ResourceBundleWrapper {
 				this.resourceBundleName);
 	}
 
+	/**
+	 * Refactors the source code to replace selected source by literal.
+	 * 
+	 * @param nodeFinder
+	 * @param literalName
+	 * @param resolver
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	private boolean effectiveAddLiteral(final ASTNodeFinder nodeFinder, final String literalName,
 			final ASTExpressionResolver resolver) {
@@ -251,7 +290,7 @@ public class ResourceBundleWrapper {
 			return false;
 		}
 
-		this.addImportToCompilationUnitIfMissing(nodeFinder.getParentNode(), this.packageName + "."
+		ResourceBundleWrapper.addImportToCompilationUnitIfMissing(nodeFinder.getParentNode(), this.packageName + "."
 				+ this.resourceBundleName);
 
 		if (locationInParent.isChildListProperty()) {
@@ -274,8 +313,14 @@ public class ResourceBundleWrapper {
 		return true;
 	}
 
+	/**
+	 * Adds an import to a compilation unit, if missing
+	 * 
+	 * @param node
+	 * @param newImportName
+	 */
 	@SuppressWarnings("unchecked")
-	private void addImportToCompilationUnitIfMissing(final ASTNode node, final String newImportName) {
+	private static void addImportToCompilationUnitIfMissing(final ASTNode node, final String newImportName) {
 		final CompilationUnit compilationUnit = (CompilationUnit) node.getRoot();
 		boolean hasImport = false;
 		for (final Iterator<?> iterator = compilationUnit.imports().iterator(); iterator.hasNext() && !hasImport;) {
@@ -292,14 +337,24 @@ public class ResourceBundleWrapper {
 		}
 	}
 
+	/**
+	 * @return Enumeration DOM instance
+	 */
 	public CompilationUnit getEnumDomCompilationUnit() {
 		return this.enumDomCompilationUnit;
 	}
 
+	/**
+	 * 
+	 * @return Resource Bundle's properties.
+	 */
 	public Properties getProperties() {
 		return this.properties;
 	}
 
+	/**
+	 * @return Resource Bundle's properties files.
+	 */
 	public IFile getPropertiesFile() {
 		return this.propertiesFile;
 	}
