@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
    <feature url="features/com.worldline.awltech.i18ntools.wizard.feature_1.0.0.qualifier.jar" id="com.worldline.awltech.i18ntools.wizard.feature" version="1.0.0.qualifier">
-      <category name="Enumeration-based I18N Generator"/>
+      <category name="I18N Tools Refactoring Wizard"/>
    </feature>
-   <category-def name="Enumeration-based I18N Generator" label="Enumeration-based I18N Generator"/>
+   <category-def name="I18N Tools Refactoring Wizard" label="I18N Tools Refactoring Wizard"/>
 </site>
