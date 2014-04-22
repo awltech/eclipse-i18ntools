@@ -119,4 +119,5 @@
 		<module>com.worldline.awltech.i18ntools.wizard.feature</module>
 		<module>com.worldline.awltech.i18ntools.wizard.repository</module>
 	</modules>
+	<url>http://github.com/awltech/eclipse-i18ntools</url>
 </project>
