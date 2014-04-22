@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="LibreOffice 4.1.5.3 (Windows)">
+	<META NAME="CREATED" CONTENT="20140324;142202142000000">
+	<META NAME="CHANGED" CONTENT="20140422;93731081000000">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { margin: 2cm }
+		P { margin-bottom: 0.21cm }
+		H2 { margin-bottom: 0.21cm }
+		H2.cjk { font-family: "SimSun" }
+		H2.ctl { font-family: "Mangal" }
+		A:link { so-language: zxx }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-GB" DIR="LTR">
+<H2 CLASS="western" ALIGN=CENTER><FONT COLOR="#dc2300"><FONT FACE="Verdana, sans-serif"><FONT SIZE=5><U><B>I18N
+Enumeration Refactoring Wizard</B></U></FONT></FONT></FONT></H2>
+<H2 CLASS="western"><FONT COLOR="#2323dc"><FONT FACE="Verdana, sans-serif"><FONT SIZE=5><B>Installation
+guide</B></FONT></FONT></FONT></H2>
+<P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>You are here on the
+tool update site.</FONT></FONT></P>
+<P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>It is not aimed for
+browsing, so please reference the corresponding URL into Eclipse to
+see the possible features to install...</FONT></FONT></P>
+<H2 CLASS="western" STYLE="font-weight: normal"><IMG SRC="index_html_1d1608a0.png" NAME="graphics1" ALIGN=LEFT WIDTH=454 HEIGHT=411 BORDER=0><BR CLEAR=LEFT><BR><BR>
+</H2>
+<H2 CLASS="western" STYLE="font-weight: normal"><FONT COLOR="#000000"><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>While
+installing, you can browse the following, which describe how to use
+the tool!</FONT></FONT></FONT></H2>
+<H2 CLASS="western"><FONT COLOR="#2323dc"><FONT FACE="Verdana, sans-serif">So,
+What is this tool for?</FONT></FONT></H2>
+<P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>This tool is an
+intuitive tool that helps with internationalizing applications.</FONT></FONT></P>
+<P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>To do so on in Java
+application, we have a design pattern which handles such concern in
+an efficient and robust way.</FONT></FONT></P>
+<P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>This design pattern
+relies on a Java enumeration, which contains:</FONT></FONT></P>
+<UL>
+	<LI><P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>one literal per
+	message, </FONT></FONT>
+	</P>
+	<LI><P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>API to format
+	the messages, through two methods:</FONT></FONT></P>
+</UL>
+<UL>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0cm"><STRONG><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>value()</FONT></FONT></STRONG><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>,
+		when there is no parameter to handle during formatting</FONT></FONT></P>
+		<LI><P><STRONG><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>value(Object...)</FONT></FONT></STRONG><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>,
+		when there is dynamic information to consider during formatting. It
+		internally relies on the </FONT></FONT><STRONG><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>MessageFormat</FONT></FONT></STRONG><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>
+		API.</FONT></FONT></P>
+	</UL>
+</UL>
+<P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>If you expected to
+do this manually, that would require the following actions:</FONT></FONT></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>At
+	first, you need to <B>create the enumeration </B><B>skeleton</B>
+	with its API and internal methods... This is always the same and
+	most of time handled through copy/paste, so error-prone...</FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>Then,
+	for each message, you need to</FONT></FONT></P>
+	<UL>
+		<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="Verdana, sans-serif"><FONT SIZE=2><B>Add
+		a new Enumeration literal</B> to the enumeration.</FONT></FONT></P>
+		<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>Need
+		to <B>create the new entry in the properties file</B> that contains
+		the internationalized messages. Can be cumbersome when lots of
+		parameters need to be handled.</FONT></FONT></P>
+		<LI><P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2><B>Update</B><B>
+		your source </B><B>code</B> to invoke the enumeration API. This can
+		be cumbersome too, since you need to validate that the values
+		passed as parameters correspond to the properties file's message
+		parameters.</FONT></FONT></P>
+	</UL>
+</UL>
+<P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>This tool proposes
+the automatic management of the actions to perform, listed here.</FONT></FONT></P>
+<H2 CLASS="western"><BR><BR>
+</H2>
+<H2 CLASS="western"><FONT COLOR="#2323dc"><FONT FACE="Verdana, sans-serif"><FONT SIZE=5><B>How
+does it work?</B></FONT></FONT></FONT></H2>
+<P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>The objective of
+this tool allows to perform such transformation, from a message
+selected by the user, in the Java Editor. Hence the entry point is
+the Java Editor.</FONT></FONT></P>
+<P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>To trigger the tool
+execution, you need to use the <B>Ctrl+Shift+N</B> keyboard shortcut
+after having selected to string to internationalize, as in the
+screenshots below:</FONT></FONT></P>
+<P ALIGN=CENTER><IMG SRC="index_html_2a8a56fb.png" NAME="graphics2" ALIGN=LEFT WIDTH=793 HEIGHT=368 BORDER=0><BR CLEAR=LEFT>&ldquo;<FONT FACE="Verdana, sans-serif"><FONT SIZE=1 STYLE="font-size: 8pt"><I><B>You
+select the string to internationalize &amp; hit Ctrl+Shift+N...&rdquo;&nbsp;</B></I></FONT></FONT></P>
+<P ALIGN=LEFT><BR><BR>
+</P>
+<P ALIGN=CENTER><IMG SRC="index_html_c0262233.png" NAME="graphics3" ALIGN=LEFT WIDTH=454 HEIGHT=193 BORDER=0><BR CLEAR=LEFT>&ldquo;<FONT FACE="Verdana, sans-serif"><FONT SIZE=1 STYLE="font-size: 8pt"><I><B>...And
+you use the wizard to customize the internationalization
+transformation&rdquo;</B></I></FONT></FONT></P>
+<P><BR><BR>
+</P>
+<P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>The wizard's fields
+are for the following purposes:</FONT></FONT></P>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="Verdana, sans-serif"><FONT SIZE=2><B>Enumeration
+	Package:</B> Package in Java Source Folder where the tool locates an
+	existing or generates the Java Enumeration</FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="Verdana, sans-serif"><FONT SIZE=2><B>Enumeration
+	Name:</B> Name of the Enumeration to locate, in package specified in
+	field above</FONT></FONT></P>
+	<LI><P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2><B>Enumeration
+	Literal:</B> Key of the message.</FONT></FONT></P>
+</UL>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="Verdana, sans-serif"><FONT SIZE=2><B>Java
+	Source Folder:</B> Source folder used for the generation of the Java
+	source code. Here, when never customized before, the field is
+	pre-filled as follows: if &quot;src/main/java&quot; is found, it is
+	used. If not, look for &quot;src&quot;. If found it is used, else
+	uses the first found in project.</FONT></FONT></P>
+	<LI><P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2><B>Resource
+	Source Folder:</B> Source folder used for the generation of the
+	property files. Here, when never customized before, the field is
+	pre-filled as follows: if &quot;src/main/resources&quot; is found,
+	it is used. If not, look for &quot;src&quot;. If found it is used,
+	else uses the first found in project.</FONT></FONT></P>
+</UL>
+<P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>Here, all fields can
+be modified by user. Information overridden is persisted, or easier
+reuse, in the .settings file of the current project.</FONT></FONT></P>
+<P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>When done, the
+result is as follows:</FONT></FONT></P>
+<P ALIGN=CENTER><IMG SRC="index_html_8941ce1.png" NAME="graphics4" ALIGN=LEFT WIDTH=784 HEIGHT=359 BORDER=0><BR CLEAR=LEFT>&ldquo;<FONT FACE="Verdana, sans-serif"><FONT SIZE=1 STYLE="font-size: 8pt"><I><B>This
+is the initial source code, after internationalization&rdquo;</B></I></FONT></FONT></P>
+<P ALIGN=LEFT><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>With
+generated files as follows&nbsp;</FONT></FONT></P>
+<P ALIGN=CENTER><IMG SRC="index_html_76b47fe0.jpg" NAME="graphics5" ALIGN=LEFT WIDTH=643 HEIGHT=601 BORDER=0><BR CLEAR=LEFT>&ldquo;<FONT FACE="Verdana, sans-serif"><FONT SIZE=1 STYLE="font-size: 8pt"><I><B>The
+internationalization intelligence is deported to an Enumeration and
+the Resource Bundle properties file.&rdquo;</B></I></FONT></FONT></P>
+<H2 CLASS="western"><FONT COLOR="#008000"><FONT FACE="Verdana, sans-serif"><FONT SIZE=3><B>Important
+notice !</B></FONT></FONT></FONT></H2>
+<H2 CLASS="western" ALIGN=LEFT STYLE="font-weight: normal"><FONT COLOR="#000000"><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>Please
+note that there is (yet) no validation on top of Enumeration Names or
+Enumeration Literals. Hence, please ensure they respect Java
+conventions. Also, if you decide to use <B>RESOURCE_BUNDLE</B> as
+literal, which is reserved, it will be automatically formatted to
+<B>RESOURCE__BUNDLE</B>.</FONT></FONT></FONT></H2>
+<H2 CLASS="western"><FONT COLOR="#2323dc"><FONT FACE="Verdana, sans-serif"><FONT SIZE=5><B>Key
+binding configuration</B></FONT></FONT></FONT></H2>
+<P STYLE="font-weight: normal"><FONT COLOR="#000000"><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>If
+you don't feel familiar with the keyboard shortcut that was
+identified, you can change it from the eclipse preferences, as shown
+on the picture below:</FONT></FONT></FONT></P>
+<P STYLE="font-weight: normal"><IMG SRC="index_html_aef66ad6.png" NAME="graphics6" ALIGN=LEFT WIDTH=643 HEIGHT=391 BORDER=0><BR CLEAR=LEFT><BR><BR>
+</P>
+<H2 CLASS="western"><FONT COLOR="#2323dc"><FONT FACE="Verdana, sans-serif"><FONT SIZE=5><B>As
+a summary...</B></FONT></FONT></FONT></H2>
+<UL>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>Industrializes
+	the application industrialization, using the Enumeration design
+	pattern</FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>An
+	easy access through configurable keyboard shortcut: <B>Ctrl+Shift+N</B></FONT></FONT></P>
+	<LI><P STYLE="margin-bottom: 0cm"><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>Everything's
+	configurable: Enumeration package, enumeration name, enumeration
+	literal, source and resource folders</FONT></FONT></P>
+	<LI><P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>Natively
+	Supports String formatting!</FONT></FONT></P>
+</UL>
+<P><FONT COLOR="#2323dc"><FONT FACE="Verdana, sans-serif"><FONT SIZE=5><B>Contacts:</B></FONT></FONT></FONT></P>
+<P><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>As this is still a
+nightly build, there is no (not yet?) dedicated JIRA project...
+Hence, please provide your feedbacks, issues and remarks at</FONT></FONT></P>
+<P ALIGN=CENTER><FONT FACE="Verdana, sans-serif"><FONT SIZE=2>mvaawl@gmail.com</FONT></FONT></P>
+<P><BR><BR>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,57 @@
+package {0};
+
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import java.text.MessageFormat;
+/**
+ * Enumeration containing internationalisation-related messages and API.
+ *
+ * @generated com.worldline.awltech.i18ntools.wizard
+ */
+public enum {1} '{'
+	;
+	
+	/*
+	 * Value of the key
+	 */
+	private final String messageKey;
+	
+	/*
+	 * Constant ResourceBundle instance
+	 */
+	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle("{2}", Locale.getDefault());
+	
+	/**
+	 * Private Enumeration Literal constructor
+	 * @param messageKey value
+	 */
+	 private {1}(final String messageKey) '{'
+	 	this.messageKey = messageKey;
+	 '}'
+	
+	/**
+	 * @return the message associated with the current value
+	 */ 
+	public String value() '{'
+		if ({1}.RESOURCE_BUNDLE == null || !{1}.RESOURCE_BUNDLE.containsKey(this.messageKey))
+			return "!!"+this.messageKey+"!!";
+		
+		return {1}.RESOURCE_BUNDLE.getString(this.messageKey);
+	'}'
+	
+	/**
+	 * Formats and returns the message associated with the current value.
+	 *
+	 * @see java.text.MessageFormat
+	 * @param parameters to use during formatting phase
+	 * @return formatted message
+	 */ 
+	public String value(final Object... args) '{'
+		if ({1}.RESOURCE_BUNDLE == null || !{1}.RESOURCE_BUNDLE.containsKey(this.messageKey))
+			return "!!"+this.messageKey+"!!";
+		
+		return MessageFormat.format({1}.RESOURCE_BUNDLE.getString(this.messageKey), args);
+	'}'
+	
+'}'

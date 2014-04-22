@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: I18NTools Enumeration Refactoring Wizard
+Bundle-SymbolicName: com.worldline.awltech.i18ntools.wizard.core;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.worldline.awltech.i18ntools.wizard.core.Activator
+Bundle-Vendor: github.com/awltech
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui.editors,
+ org.eclipse.jdt.core,
+ org.eclipse.jdt.ui,
+ org.eclipse.ui.forms,
+ org.eclipse.jface.text
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

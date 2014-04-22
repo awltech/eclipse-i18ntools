@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="com.worldline.awltech.i18ntools.wizard.command"
+            contextId="org.eclipse.jdt.ui.javaEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M2+N">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.jdt.ui.category.source"
+            defaultHandler="com.worldline.awltech.i18ntools.wizard.core.WizardLaunchHandler"
+            description="Externalize the String to internationalize, selected in the Java Editor, into Enumeration Resource Bundle and Properties file"
+            id="com.worldline.awltech.i18ntools.wizard.command"
+            name="Externalize Message in Enum Resource Bundle">
+      </command>
+   </extension>
+</plugin>
