@@ -316,11 +316,9 @@ public class ResourceBundleWrapper {
 
 		if (locationInParent.isChildListProperty()) {
 			final List<Object> list = (List<Object>) parent.getStructuralProperty(locationInParent);
-			if (nodeFinder != null) {
-				final int index = list.indexOf(nodeFinder.getFoundNode());
-				list.remove(nodeFinder.getFoundNode());
-				list.add(index, replacement);
-			}
+			final int index = list.indexOf(nodeFinder.getFoundNode());
+			list.remove(nodeFinder.getFoundNode());
+			list.add(index, replacement);
 		} else {
 			parent.setStructuralProperty(locationInParent, replacement);
 		}
