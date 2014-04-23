@@ -165,8 +165,8 @@ public class RefactoringJob extends WorkspaceJob {
 		if (isModified) {
 			RefactoringJob.updateCompilationUnit(astCompilationUnit);
 			RefactoringJob.updateCompilationUnit(resourceBundleWrapper.getEnumDomCompilationUnit());
-			RefactoringJob.saveCompilationUnit((ICompilationUnit) resourceBundleWrapper
-					.getEnumDomCompilationUnit().getJavaElement());
+			RefactoringJob.saveCompilationUnit((ICompilationUnit) resourceBundleWrapper.getEnumDomCompilationUnit()
+					.getJavaElement());
 			RefactoringJob.saveProperties(resourceBundleWrapper.getPropertiesFile(),
 					resourceBundleWrapper.getProperties());
 
@@ -234,15 +234,15 @@ public class RefactoringJob extends WorkspaceJob {
 	 * @param properties
 	 */
 	private static void saveProperties(final IFile propertiesFile, final Properties properties) {
+		FileOutputStream fileOutputStream = null;
 		try {
 			final File file = new File(propertiesFile.getLocation().toString());
 			if (!file.getParentFile().exists()) {
 				file.getParentFile().mkdirs();
 			}
 			file.createNewFile();
-			final FileOutputStream fileOutputStream = new FileOutputStream(file);
+			fileOutputStream = new FileOutputStream(file);
 			properties.store(fileOutputStream, null);
-			fileOutputStream.close();
 		} catch (final FileNotFoundException e) {
 			Activator
 					.getDefault()
@@ -255,6 +255,18 @@ public class RefactoringJob extends WorkspaceJob {
 					.getLog()
 					.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
 							RefactoringWizardMessages.ERROR_UPDATE_PROPERTIES.value(), e));
+		} finally {
+			if (fileOutputStream != null) {
+				try {
+					fileOutputStream.close();
+				} catch (IOException e) {
+					Activator
+							.getDefault()
+							.getLog()
+							.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
+									RefactoringWizardMessages.ERROR_UPDATE_PROPERTIES.value(), e));
+				}
+			}
 		}
 	}
 
