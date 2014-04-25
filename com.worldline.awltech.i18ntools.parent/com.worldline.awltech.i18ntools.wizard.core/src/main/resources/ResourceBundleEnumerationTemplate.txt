@@ -37,9 +37,9 @@ public enum {1} '{'
 	 * @return the message associated with the current value
 	 */ 
 	public String value() '{'
-		if ({1}.RESOURCE_BUNDLE == null || !{1}.RESOURCE_BUNDLE.containsKey(this.messageKey))
+		if ({1}.RESOURCE_BUNDLE == null || !{1}.RESOURCE_BUNDLE.containsKey(this.messageKey)) '{'
 			return "!!"+this.messageKey+"!!";
-		
+		'}'
 		return {1}.RESOURCE_BUNDLE.getString(this.messageKey);
 	'}'
 	
@@ -51,9 +51,9 @@ public enum {1} '{'
 	 * @return formatted message
 	 */ 
 	public String value(final Object... args) '{'
-		if ({1}.RESOURCE_BUNDLE == null || !{1}.RESOURCE_BUNDLE.containsKey(this.messageKey))
+		if ({1}.RESOURCE_BUNDLE == null || !{1}.RESOURCE_BUNDLE.containsKey(this.messageKey)) '{'
 			return "!!"+this.messageKey+"!!";
-		
+		'}'
 		return MessageFormat.format({1}.RESOURCE_BUNDLE.getString(this.messageKey), args);
 	'}'
 	
