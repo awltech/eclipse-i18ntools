@@ -43,6 +43,7 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.core.ToolFactory;
 import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ASTParser;
@@ -55,6 +56,12 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.MethodInvocation;
 import org.eclipse.jdt.core.dom.StringLiteral;
 import org.eclipse.jdt.core.dom.StructuralPropertyDescriptor;
+import org.eclipse.jdt.core.formatter.CodeFormatter;
+import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.Document;
+import org.eclipse.jface.text.IDocument;
+import org.eclipse.text.edits.MalformedTreeException;
+import org.eclipse.text.edits.TextEdit;
 
 import com.worldline.awltech.i18ntools.wizard.core.Activator;
 import com.worldline.awltech.i18ntools.wizard.core.RefactoringWizardMessages;
@@ -200,8 +207,32 @@ public class ResourceBundleWrapper {
 		this.enumJavaCompilationUnit = ipf.getCompilationUnit(javaUnitName);
 		if (!this.enumJavaCompilationUnit.exists()) {
 			final String contents = this.createJavaUnitContents();
+
+			// Format the source code before trying to set it to the compilation unit.
+			CodeFormatter formatter = ToolFactory.createCodeFormatter(this.javaProject.getOptions(true),
+					ToolFactory.M_FORMAT_EXISTING);
+			IDocument document = new Document(contents);
+
+			TextEdit textEdit = formatter.format(CodeFormatter.K_COMPILATION_UNIT | CodeFormatter.F_INCLUDE_COMMENTS,
+					contents, 0, contents.length(), 0, null);
 			try {
-				this.enumJavaCompilationUnit = ipf.createCompilationUnit(javaUnitName, contents, false,
+				textEdit.apply(document);
+			} catch (MalformedTreeException e1) {
+				Activator
+						.getDefault()
+						.getLog()
+						.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
+								RefactoringWizardMessages.ERROR_REFACTOR_TEMPLATE.value(), e1));
+			} catch (BadLocationException e1) {
+				Activator
+						.getDefault()
+						.getLog()
+						.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID,
+								RefactoringWizardMessages.ERROR_REFACTOR_TEMPLATE.value(), e1));
+			}
+			try {
+				// Set the source into the compilation unit.
+				this.enumJavaCompilationUnit = ipf.createCompilationUnit(javaUnitName, document.get(), false,
 						new NullProgressMonitor());
 			} catch (final JavaModelException e) {
 				Activator
