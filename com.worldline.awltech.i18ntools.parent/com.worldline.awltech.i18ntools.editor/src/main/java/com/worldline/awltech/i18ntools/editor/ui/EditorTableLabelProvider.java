@@ -9,6 +9,11 @@ import org.eclipse.swt.graphics.Image;
 import com.worldline.awltech.i18ntools.editor.data.model.I18NEntry;
 import com.worldline.awltech.i18ntools.editor.data.model.I18NMessage;
 
+/**
+ * Editor's table label provider.
+ * @author mvanbesien
+ *
+ */
 public class EditorTableLabelProvider implements ITableLabelProvider {
 
 	private Locale locale;

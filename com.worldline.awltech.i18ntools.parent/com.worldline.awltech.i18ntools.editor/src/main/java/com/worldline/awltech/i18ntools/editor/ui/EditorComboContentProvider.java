@@ -9,6 +9,11 @@ import org.eclipse.jface.viewers.Viewer;
 
 import com.worldline.awltech.i18ntools.editor.data.model.I18NResourceBundle;
 
+/**
+ * Editor's combo content provider.
+ * @author mvanbesien
+ *
+ */
 public class EditorComboContentProvider implements IStructuredContentProvider {
 
 	@Override

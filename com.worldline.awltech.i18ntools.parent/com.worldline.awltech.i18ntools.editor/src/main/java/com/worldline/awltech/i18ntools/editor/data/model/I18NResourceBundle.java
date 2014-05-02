@@ -29,6 +29,13 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.text.edits.MalformedTreeException;
 import org.eclipse.text.edits.TextEdit;
 
+/**
+ * Resource Bundle model object. Contains all messages information and file
+ * location
+ * 
+ * @author mvanbesien
+ * 
+ */
 public class I18NResourceBundle {
 
 	private String name;

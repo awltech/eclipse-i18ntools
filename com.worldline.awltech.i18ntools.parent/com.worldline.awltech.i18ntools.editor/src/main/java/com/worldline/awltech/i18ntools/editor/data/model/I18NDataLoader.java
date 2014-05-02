@@ -18,6 +18,13 @@ import org.eclipse.jdt.core.Signature;
 
 import com.worldline.awltech.i18ntools.editor.data.model.I18NResourceBundle.I18NResourceBundleBuilder;
 
+/**
+ * Implementation that, from an Enumeration based resource bundle, locates all
+ * the Resource Bundle files and loads them into specific structure.
+ * 
+ * @author mvanbesien
+ * 
+ */
 public class I18NDataLoader {
 
 	private final ICompilationUnit compilationUnit;

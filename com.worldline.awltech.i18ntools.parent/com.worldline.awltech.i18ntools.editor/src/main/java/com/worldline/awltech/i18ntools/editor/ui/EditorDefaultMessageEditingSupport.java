@@ -9,6 +9,11 @@ import org.eclipse.jface.viewers.ViewerCell;
 import com.worldline.awltech.i18ntools.editor.data.model.I18NEntry;
 import com.worldline.awltech.i18ntools.editor.data.model.I18NMessage;
 
+/**
+ * Editing support for default message column cells
+ * @author mvanbesien
+ *
+ */
 public class EditorDefaultMessageEditingSupport extends EditingSupport {
 
 	private final TableViewer viewer;

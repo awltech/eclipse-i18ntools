@@ -8,6 +8,13 @@ import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
+/**
+ * Table listener that resizes proportionally the columns when the table is
+ * resized
+ * 
+ * @author mvanbesien
+ * 
+ */
 public class TableResizeListener extends ControlAdapter {
 
 	private Map<TableColumn, Integer> percentages = new HashMap<TableColumn, Integer>();

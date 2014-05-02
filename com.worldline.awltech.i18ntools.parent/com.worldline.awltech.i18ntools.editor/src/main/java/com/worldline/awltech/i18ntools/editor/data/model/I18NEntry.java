@@ -5,6 +5,12 @@ import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ * Resource Bundle entry. Contains the key, default message and localized ones.
+ * 
+ * @author mvanbesien
+ * 
+ */
 public class I18NEntry {
 
 	public I18NEntry(String name) {

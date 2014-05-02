@@ -6,6 +6,12 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
+/**
+ * Editor's combo label provider.
+ * 
+ * @author mvanbesien
+ * 
+ */
 public class EditorComboLabelProvider implements ILabelProvider {
 
 	@Override

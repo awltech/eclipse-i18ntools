@@ -42,6 +42,11 @@ import org.eclipse.ui.part.FileEditorInput;
 import com.worldline.awltech.i18ntools.editor.data.model.I18NDataLoader;
 import com.worldline.awltech.i18ntools.editor.data.model.I18NResourceBundle;
 
+/**
+ * Editor
+ * @author mvanbesien
+ *
+ */
 public class ResourceBundleEditor extends EditorPart {
 
 	private Locale currentLocale = null;

@@ -11,6 +11,12 @@ import org.eclipse.jface.viewers.ViewerCell;
 import com.worldline.awltech.i18ntools.editor.data.model.I18NEntry;
 import com.worldline.awltech.i18ntools.editor.data.model.I18NMessage;
 
+/**
+ * Editing support for localized messages column cells
+ * 
+ * @author mvanbesien
+ * 
+ */
 public class EditorLocalizedMessageEditingSupport extends EditingSupport {
 
 	private final TableViewer viewer;
@@ -57,7 +63,7 @@ public class EditorLocalizedMessageEditingSupport extends EditingSupport {
 			this.viewer.update(element, null);
 		}
 	}
-	
+
 	@Override
 	protected void initializeCellEditorValue(CellEditor cellEditor, ViewerCell cell) {
 		Object value = getValue(cell.getElement());

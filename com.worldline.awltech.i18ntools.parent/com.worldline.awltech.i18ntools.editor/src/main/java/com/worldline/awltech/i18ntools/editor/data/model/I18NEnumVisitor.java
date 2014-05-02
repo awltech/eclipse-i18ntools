@@ -21,6 +21,13 @@ import org.eclipse.jdt.core.dom.MethodInvocation;
 import org.eclipse.jdt.core.dom.StringLiteral;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
+/**
+ * AST Visitor that locates all the literals of a given enumeration. Will return
+ * no literal at all if the enumeration is not a ResourceBundle.
+ * 
+ * @author mvanbesien
+ * 
+ */
 public class I18NEnumVisitor extends ASTVisitor {
 
 	private final List<String> literals = new ArrayList<>();
