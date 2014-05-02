@@ -1,0 +1,4 @@
+LastLiteralPrefix=LABEL_LOCALECOLUMN
+ResourceBundleName=ResourceBundleEditorMessages
+ResourceBundlePackage=com.worldline.awltech.i18ntools.editor.ui
+eclipse.preferences.version=1

@@ -41,6 +41,7 @@ import org.eclipse.ui.part.FileEditorInput;
 
 import com.worldline.awltech.i18ntools.editor.data.model.I18NDataLoader;
 import com.worldline.awltech.i18ntools.editor.data.model.I18NResourceBundle;
+import com.worldline.awltech.i18ntools.editor.ui.ResourceBundleEditorMessages;
 
 /**
  * Editor
@@ -73,20 +74,20 @@ public class ResourceBundleEditor extends EditorPart {
 		setInput(input);
 
 		if (!(input instanceof FileEditorInput)) {
-			throw new PartInitException("Input is not a file.");
+			throw new PartInitException(ResourceBundleEditorMessages.ERROR_INPUTNOTFILE.value());
 		}
 		FileEditorInput editorInput = (FileEditorInput) input;
 		IFile file = editorInput.getFile();
 		IJavaElement javaElement = JavaCore.create(file);
 		if (!(javaElement instanceof ICompilationUnit)) {
-			throw new PartInitException("Input is not a Compilation Unit");
+			throw new PartInitException(ResourceBundleEditorMessages.ERROR_INPUTNOTCU.value());
 		}
 
 		ICompilationUnit compilationUnit = (ICompilationUnit) javaElement;
 		try {
 			this.resourceBundle = new I18NDataLoader(compilationUnit).load();
 		} catch (CoreException e) {
-			throw new PartInitException("Could not parse source code", e);
+			throw new PartInitException(ResourceBundleEditorMessages.ERROR_FAILTOPARSECODE.value(), e);
 		}
 	}
 
@@ -106,32 +107,32 @@ public class ResourceBundleEditor extends EditorPart {
 		background.setLayout(new FormLayout());
 
 		Group optionsGroup = new Group(background, SWT.NONE);
-		optionsGroup.setText("Resource Bundle options : ");
+		optionsGroup.setText(ResourceBundleEditorMessages.LABEL_OPTIONSGROUP.value());
 		optionsGroup.setLayout(new FormLayout());
 		FormDataBuilder.on(optionsGroup).horizontal().bottom();
 		Group tableGroup = new Group(background, SWT.NONE);
 
-		tableGroup.setText("Resource Bundle messages : ");
+		tableGroup.setText(ResourceBundleEditorMessages.LABEL_TABLEGROUP.value());
 		tableGroup.setLayout(new FormLayout());
 		FormDataBuilder.on(tableGroup).horizontal().top().bottom(optionsGroup);
 
 		Label localeSelectionLabel = new Label(optionsGroup, SWT.NONE);
-		localeSelectionLabel.setText("Locale to edit : ");
+		localeSelectionLabel.setText(ResourceBundleEditorMessages.LABEL_LOCALECOMBO.value());
 		FormDataBuilder.on(localeSelectionLabel).left().top(0, 8).width(100);
 
 		Button localeSelectionButton = new Button(optionsGroup, SWT.PUSH);
-		localeSelectionButton.setText("Add Locale...");
+		localeSelectionButton.setText(ResourceBundleEditorMessages.LABEL_LOCALEBUTTON.value());
 		FormDataBuilder.on(localeSelectionButton).right().width(120).height(25).top();
 
 		Combo localSelectionCombo = new Combo(optionsGroup, SWT.READ_ONLY);
 		FormDataBuilder.on(localSelectionCombo).left(localeSelectionLabel).top().right(localeSelectionButton);
 
 		Label addLiteralLabel = new Label(optionsGroup, SWT.NONE);
-		addLiteralLabel.setText("New Message Key : ");
+		addLiteralLabel.setText(ResourceBundleEditorMessages.LABEL_NEWKEYLABEL.value());
 		FormDataBuilder.on(addLiteralLabel).left().bottom().width(100).top(localSelectionCombo, 8);
 
 		Button addLiteralButton = new Button(optionsGroup, SWT.PUSH);
-		addLiteralButton.setText("Add to Enumeration");
+		addLiteralButton.setText(ResourceBundleEditorMessages.LABEL_NEWKEYBUTTON.value());
 		FormDataBuilder.on(addLiteralButton).right().width(120).height(25).bottom().top(localSelectionCombo);
 
 		final Text addLiteralText = new Text(optionsGroup, SWT.BORDER);
@@ -144,13 +145,13 @@ public class ResourceBundleEditor extends EditorPart {
 		table.setLinesVisible(true);
 
 		TableColumn keyColumn = new TableColumn(table, SWT.NONE);
-		keyColumn.setText("Message Key : ");
+		keyColumn.setText(ResourceBundleEditorMessages.LABEL_KEYCOLUMN.value());
 
 		TableColumn defaultColumn = new TableColumn(table, SWT.NONE);
-		defaultColumn.setText("Default Message Value : ");
+		defaultColumn.setText(ResourceBundleEditorMessages.LABEL_DEFAULTCOLUMN.value());
 
 		TableColumn localeColumn = new TableColumn(table, SWT.NONE);
-		localeColumn.setText("Current Locale Message Value : ");
+		localeColumn.setText(ResourceBundleEditorMessages.LABEL_LOCALECOLUMN.value());
 
 		TableResizeListener tableResizeListener = new TableResizeListener();
 		table.addControlListener(tableResizeListener);
