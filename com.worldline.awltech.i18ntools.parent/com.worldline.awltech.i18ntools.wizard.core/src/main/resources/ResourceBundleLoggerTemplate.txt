@@ -1,0 +1,100 @@
+/**
+ *
+ */
+package {0};
+
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Enumeration containing internationalisation-related messages and API.
+ *
+ * @generated com.worldline.awltech.i18ntools.wizard
+ */
+public enum {1} '{'
+	;
+	
+	/*
+	 * Internal enumeration holding the message severity enumeration level, because not proposed by SLF4J.
+	 */
+	private static enum MessageLevel '{'
+		TRACE, DEBUG, INFO, WARN, ERROR;
+	'}' 
+	
+	/*
+	 * Logger instance.
+	 */
+	private static final Logger LOGGER = LoggerFactory.getLogger({1}.class);
+	
+	/*
+	 * Value of the key
+	 */
+	private final String messageKey;
+	
+	/*
+	 * Severity of the message identified by the key
+	 */
+	 private final MessageLevel messageLevel;
+	
+	/*
+	 * Constant ResourceBundle instance
+	 */
+	private static final ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle("{2}", Locale.getDefault());
+	
+	/**
+	 * Private Enumeration Literal constructor
+	 * @param messageKey value
+	 */
+	 private {1}(final String messageKey, final MessageLevel messageLevel) '{'
+	 	this.messageKey = messageKey;
+	 	this.messageLevel = messageLevel;
+	 '}'
+	
+	/**
+	 * Formats and logs the message associated with the current value.
+	 *
+	 * @param parameters to use during formatting phase
+	 */ 
+	public void log(final Object... args) '{'
+		switch (this.messageLevel) '{'
+			case TRACE:
+				if ({1}.LOGGER.isTraceEnabled()) '{'
+					{1}.LOGGER.trace(this.message(), args);
+				'}'
+				break;
+			case DEBUG:
+				if ({1}.LOGGER.isDebugEnabled()) '{'
+					{1}.LOGGER.debug(this.message(), args);
+				'}'
+				break;
+			case INFO:
+				if ({1}.LOGGER.isInfoEnabled()) '{'
+					{1}.LOGGER.info(this.message(), args);
+				'}'
+				break;
+			case WARN:
+				if ({1}.LOGGER.isWarnEnabled()) '{'
+					{1}.LOGGER.warn(this.message(), args);
+				'}'
+				break;
+			case ERROR:
+				if ({1}.LOGGER.isErrorEnabled()) '{'
+					{1}.LOGGER.error(this.message(), args);
+				'}'
+				break;
+		'}'
+	'}'
+	
+	/*
+	 * Returns the message corresponding to the current key
+	 */
+	private String message() '{'
+		if ({1}.RESOURCE_BUNDLE == null || !{1}.RESOURCE_BUNDLE.containsKey(this.messageKey)) '{'
+			return "!!"+this.messageKey+"!!";
+		'}'
+		return  {1}.RESOURCE_BUNDLE.getString(this.messageKey);
+	'}'	
+'}'

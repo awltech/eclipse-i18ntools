@@ -118,6 +118,8 @@
 		<module>com.worldline.awltech.i18ntools.wizard.core</module>
 		<module>com.worldline.awltech.i18ntools.wizard.feature</module>
 		<module>com.worldline.awltech.i18ntools.wizard.repository</module>
+		<module>com.worldline.awltech.i18ntools.editor</module>
+		<module>com.worldline.awltech.i18ntools.editor.feature</module>
 	</modules>
 	<url>http://github.com/awltech/eclipse-i18ntools</url>
 </project>

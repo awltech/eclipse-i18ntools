@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.worldline.awltech.i18ntools.editor.ui.ResourceBundleEditor"
+            default="false"
+            extensions="*.java"
+            icon="icons/i18neditor.png"
+            id="com.worldline.awltech.i18ntools.editor.editor1"
+            matchingStrategy="com.worldline.awltech.i18ntools.editor.ui.ResourceBundleEditorStrategy"
+            name="Resource Bundles Editor">
+      </editor>
+   </extension>
+
+</plugin>
