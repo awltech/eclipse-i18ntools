@@ -41,12 +41,12 @@ import org.eclipse.ui.part.FileEditorInput;
 
 import com.worldline.awltech.i18ntools.editor.data.model.I18NDataLoader;
 import com.worldline.awltech.i18ntools.editor.data.model.I18NResourceBundle;
-import com.worldline.awltech.i18ntools.editor.ui.ResourceBundleEditorMessages;
 
 /**
  * Editor
+ * 
  * @author mvanbesien
- *
+ * 
  */
 public class ResourceBundleEditor extends EditorPart {
 
@@ -89,6 +89,7 @@ public class ResourceBundleEditor extends EditorPart {
 		} catch (CoreException e) {
 			throw new PartInitException(ResourceBundleEditorMessages.ERROR_FAILTOPARSECODE.value(), e);
 		}
+		this.setPartName(this.resourceBundle.getName()+".i18n");
 	}
 
 	@Override
@@ -165,12 +166,12 @@ public class ResourceBundleEditor extends EditorPart {
 		this.comboViewer.setInput(this.resourceBundle);
 
 		this.tableViewer = new TableViewer(table) {
-			
+
 			@Override
 			public void update(Object element, String[] properties) {
 				super.update(element, properties);
 				firePropertyChange(PROP_DIRTY);
-				}
+			}
 		};
 
 		TableViewerColumn defaultColumnViewer = new TableViewerColumn(tableViewer, defaultColumn);
