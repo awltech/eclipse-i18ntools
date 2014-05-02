@@ -26,5 +26,8 @@
    <feature url="features/com.worldline.awltech.i18ntools.wizard.feature_2.0.0.qualifier.jar" id="com.worldline.awltech.i18ntools.wizard.feature" version="2.0.0.qualifier">
       <category name="I18N Tools Refactoring Wizard"/>
    </feature>
+   <feature url="features/com.worldline.awltech.i18ntools.editor.feature_2.0.0.qualifier.jar" id="com.worldline.awltech.i18ntools.editor.feature" version="2.0.0.qualifier">
+      <category name="I18N Tools Refactoring Wizard"/>
+   </feature>
    <category-def name="I18N Tools Refactoring Wizard" label="I18N Tools Refactoring Wizard"/>
 </site>
