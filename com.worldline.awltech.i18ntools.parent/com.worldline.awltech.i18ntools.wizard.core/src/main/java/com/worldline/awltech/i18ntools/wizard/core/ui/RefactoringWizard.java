@@ -60,7 +60,7 @@ import com.worldline.awltech.i18ntools.wizard.core.ui.validation.TypeTextValidat
  */
 public class RefactoringWizard {
 
-	private static final String IMAGE_PATH = "icons/export_wiz.gif";
+	private static final String IMAGE_PATH = "icons/i18ntools.png";
 
 	private static final int LABEL_WIDTH = 150;
 
