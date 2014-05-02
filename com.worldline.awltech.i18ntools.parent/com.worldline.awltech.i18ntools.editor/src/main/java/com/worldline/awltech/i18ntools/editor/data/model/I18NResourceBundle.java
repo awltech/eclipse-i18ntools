@@ -295,7 +295,11 @@ public class I18NResourceBundle {
 
 	public void addLiteral(String literal) {
 		for (I18NEntry message : this.defaultMessages) {
-			if (literal.equals(message))
+			if (literal.equals(message.getName()))
+				return;
+		}
+		for (I18NEntry message : this.newMessages) {
+			if (literal.equals(message.getName()))
 				return;
 		}
 		I18NEntry i18nEntry = new I18NEntry(literal);
