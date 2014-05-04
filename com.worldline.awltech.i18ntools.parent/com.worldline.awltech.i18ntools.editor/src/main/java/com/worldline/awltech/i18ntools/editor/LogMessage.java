@@ -36,8 +36,10 @@ public class LogMessage {
 	}
 
 	public void log() {
-		Activator.getDefault().getLog()
-				.log(new Status(this.severity, Activator.PLUGIN_ID, this.message, this.throwable));
+		if (this.message != null || this.throwable != null) {
+			Activator.getDefault().getLog()
+					.log(new Status(this.severity, Activator.PLUGIN_ID, this.message, this.throwable));
+		}
 	}
 
 }
