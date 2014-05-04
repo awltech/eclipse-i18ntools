@@ -29,6 +29,8 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.text.edits.MalformedTreeException;
 import org.eclipse.text.edits.TextEdit;
 
+import com.worldline.awltech.i18ntools.editor.LogMessage;
+
 /**
  * Resource Bundle model object. Contains all messages information and file
  * location
@@ -95,7 +97,7 @@ public class I18NResourceBundle {
 						iFile.refreshLocal(IResource.DEPTH_ZERO, null);
 						properties.load(iFile.getContents());
 					} catch (IOException | CoreException e) {
-						e.printStackTrace();
+						LogMessage.warn().message("An error occurred while refreshing file.").throwable(e).log();
 					}
 					propertiesMap.put(locale, properties);
 				}
@@ -180,7 +182,7 @@ public class I18NResourceBundle {
 						file.refreshLocal(IResource.DEPTH_ZERO, null);
 						properties.load(file.getContents());
 					} catch (IOException | CoreException e) {
-						e.printStackTrace();
+						LogMessage.warn().message("An error occurred while refreshing file.").throwable(e).log();
 					}
 				}
 			}
@@ -211,7 +213,7 @@ public class I18NResourceBundle {
 					mappedProperties.get(locale).store(writer, null);
 					dirty = true;
 				} catch (IOException e) {
-					e.printStackTrace();
+					LogMessage.error().message("An error occurred while saving file.").throwable(e).log();
 				}
 			}
 
@@ -226,7 +228,7 @@ public class I18NResourceBundle {
 					enumeration.getJavaProject().getProject().refreshLocal(IResource.DEPTH_INFINITE, null);
 				}
 			} catch (CoreException e) {
-				e.printStackTrace();
+				LogMessage.warn().message("An error occurred while refreshing file.").throwable(e).log();
 			}
 		}
 	}
@@ -287,7 +289,7 @@ public class I18NResourceBundle {
 			newMessages.clear();
 
 		} catch (MalformedTreeException | BadLocationException | CoreException e) {
-			e.printStackTrace();
+			LogMessage.error().message("An error occurred while saving file.").throwable(e).log();
 		}
 
 		return false;
