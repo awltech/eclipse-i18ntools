@@ -212,6 +212,7 @@ public class I18NResourceBundle {
 				try {
 					FileWriter writer = new FileWriter(file.getLocation().toFile());
 					mappedProperties.get(locale).store(writer, null);
+					writer.close();
 					dirty = true;
 				} catch (IOException e) {
 					LogMessage.error().message("An error occurred while saving file.").throwable(e).log();
