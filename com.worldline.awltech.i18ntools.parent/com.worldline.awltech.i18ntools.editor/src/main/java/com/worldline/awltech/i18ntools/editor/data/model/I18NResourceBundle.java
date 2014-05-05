@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Properties;
 
 import org.eclipse.core.resources.IContainer;
@@ -110,10 +111,10 @@ public class I18NResourceBundle {
 			for (String literal : literals) {
 				I18NEntry message = new I18NEntry(literal);
 				resourceBundle.defaultMessages.add(message);
-				for (Locale locale : propertiesMap.keySet()) {
-					Properties properties = propertiesMap.get(locale);
+				for (Entry<Locale, Properties> entry : propertiesMap.entrySet()) {
+					Properties properties = entry.getValue();
 					String value = properties.containsKey(literal) ? properties.getProperty(literal) : null;
-					message.withMessage(locale, new I18NMessage(value, I18NMessageStatus.BUILT));
+					message.withMessage(entry.getKey(), new I18NMessage(value, I18NMessageStatus.BUILT));
 				}
 			}
 			return resourceBundle;
