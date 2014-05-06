@@ -39,8 +39,10 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.part.EditorPart;
 import org.eclipse.ui.part.FileEditorInput;
 
+import com.worldline.awltech.i18ntools.editor.Activator;
 import com.worldline.awltech.i18ntools.editor.data.model.I18NDataLoader;
 import com.worldline.awltech.i18ntools.editor.data.model.I18NResourceBundle;
+import com.worldline.awltech.i18ntools.editor.ui.ResourceBundleEditorMessages;
 
 /**
  * Editor
@@ -206,6 +208,9 @@ public class ResourceBundleEditor extends EditorPart {
 			public void widgetSelected(SelectionEvent e) {
 				ElementListSelectionDialog dialog = new ElementListSelectionDialog(new Shell(),
 						new EditorComboLabelProvider());
+				dialog.setMessage(ResourceBundleEditorMessages.LOCALEDIALOG_MESSAGE.value());
+				dialog.setTitle(ResourceBundleEditorMessages.LOCALEDIALOG_TITLE.value());
+				dialog.setImage(Activator.getDefault().getImage("/icons/i18neditor.png"));
 				dialog.setMultipleSelection(false);
 				dialog.setElements(Locale.getAvailableLocales());
 				if (dialog.open() == Window.OK && dialog.getResult().length > 0) {

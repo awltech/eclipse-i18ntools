@@ -6,13 +6,16 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
+import com.worldline.awltech.i18ntools.editor.Activator;
 import com.worldline.awltech.i18ntools.editor.data.model.I18NEntry;
 import com.worldline.awltech.i18ntools.editor.data.model.I18NMessage;
+import com.worldline.awltech.i18ntools.editor.data.model.I18NMessageStatus;
 
 /**
  * Editor's table label provider.
+ * 
  * @author mvanbesien
- *
+ * 
  */
 public class EditorTableLabelProvider implements ITableLabelProvider {
 
@@ -41,6 +44,18 @@ public class EditorTableLabelProvider implements ITableLabelProvider {
 
 	@Override
 	public Image getColumnImage(Object element, int columnIndex) {
+		if (columnIndex == 0 && element instanceof I18NEntry) {
+			I18NEntry entry = (I18NEntry) element;
+			if (entry.getDefaultMessage() == null || entry.getDefaultMessage().getStatus() != I18NMessageStatus.BUILT) {
+				return Activator.getDefault().getImage("/icons/message-modified.gif");
+			}
+			for (I18NMessage message : entry.getLocalizedMessages().values()) {
+				if (message != null && message.getStatus() != I18NMessageStatus.BUILT) {
+					return Activator.getDefault().getImage("/icons/message-modified.gif");
+				}
+			}
+			return Activator.getDefault().getImage("/icons/message.gif");
+		}
 		return null;
 	}
 
