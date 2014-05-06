@@ -57,6 +57,7 @@ public class ResourceBundleEditor extends EditorPart {
 	private TableViewer tableViewer;
 	private ComboViewer comboViewer;
 	private EditorLocalizedMessageEditingSupport editorLocalizedMessageEditingSupport;
+	private TableResizeListener tableResizeListener;
 
 	@Override
 	public void doSave(IProgressMonitor monitor) {
@@ -156,7 +157,7 @@ public class ResourceBundleEditor extends EditorPart {
 		TableColumn localeColumn = new TableColumn(table, SWT.NONE);
 		localeColumn.setText(ResourceBundleEditorMessages.LABEL_LOCALECOLUMN.value());
 
-		TableResizeListener tableResizeListener = new TableResizeListener();
+		this.tableResizeListener = new TableResizeListener();
 		table.addControlListener(tableResizeListener);
 		tableResizeListener.register(keyColumn, 20);
 		tableResizeListener.register(defaultColumn, 40);
