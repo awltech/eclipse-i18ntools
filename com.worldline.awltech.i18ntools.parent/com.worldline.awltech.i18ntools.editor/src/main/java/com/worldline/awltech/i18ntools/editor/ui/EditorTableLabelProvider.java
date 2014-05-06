@@ -19,6 +19,8 @@ import com.worldline.awltech.i18ntools.editor.data.model.I18NMessageStatus;
  */
 public class EditorTableLabelProvider implements ITableLabelProvider {
 
+	private static final String ICONS_MESSAGE_GIF = "/icons/message.gif";
+	private static final String ICONS_MESSAGE_MODIFIED_GIF = "/icons/message-modified.gif";
 	private Locale locale;
 
 	public EditorTableLabelProvider(Locale locale) {
@@ -47,14 +49,14 @@ public class EditorTableLabelProvider implements ITableLabelProvider {
 		if (columnIndex == 0 && element instanceof I18NEntry) {
 			I18NEntry entry = (I18NEntry) element;
 			if (entry.getDefaultMessage() == null || entry.getDefaultMessage().getStatus() != I18NMessageStatus.BUILT) {
-				return Activator.getDefault().getImage("/icons/message-modified.gif");
+				return Activator.getDefault().getImage(ICONS_MESSAGE_MODIFIED_GIF);
 			}
 			for (I18NMessage message : entry.getLocalizedMessages().values()) {
 				if (message != null && message.getStatus() != I18NMessageStatus.BUILT) {
-					return Activator.getDefault().getImage("/icons/message-modified.gif");
+					return Activator.getDefault().getImage(ICONS_MESSAGE_MODIFIED_GIF);
 				}
 			}
-			return Activator.getDefault().getImage("/icons/message.gif");
+			return Activator.getDefault().getImage(ICONS_MESSAGE_GIF);
 		}
 		return null;
 	}
