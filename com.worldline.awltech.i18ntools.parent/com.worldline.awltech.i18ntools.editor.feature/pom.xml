@@ -7,5 +7,5 @@
   	<version>2.0.0-SNAPSHOT</version>
   	<artifactId>com.worldline.awltech.i18ntools.parent</artifactId>
   </parent>
-  <name>I18NTools Resource Bundle Editor</name>
+  <name>I18NTools Resource Bundle Editor Feature</name>
 </project>
