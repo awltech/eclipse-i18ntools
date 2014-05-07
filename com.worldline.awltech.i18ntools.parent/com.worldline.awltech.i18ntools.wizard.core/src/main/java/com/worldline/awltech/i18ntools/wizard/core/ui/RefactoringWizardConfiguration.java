@@ -57,6 +57,8 @@ public class RefactoringWizardConfiguration {
 
 	private static final String SRC_MAIN_JAVA = "src/main/java";
 
+	private static final String RESOURCES = "resources";
+
 	private static final String RESBUNDLE_NAME = "ResourceBundleName";
 
 	private static final String LAST_LITERAL_NAME = "LastLiteralPrefix";
@@ -105,7 +107,8 @@ public class RefactoringWizardConfiguration {
 
 	public String getResourceSourceFolder() {
 		return this.preferences.get(RefactoringWizardConfiguration.RESOURCES_SOURCE_FOLDER_NAME, this.getSourceFolder(
-				RefactoringWizardConfiguration.SRC_MAIN_RESOURCES, RefactoringWizardConfiguration.SRC, null));
+				RefactoringWizardConfiguration.SRC_MAIN_RESOURCES, RefactoringWizardConfiguration.RESOURCES,
+				RefactoringWizardConfiguration.SRC, null));
 	}
 
 	/**
