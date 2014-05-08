@@ -6,6 +6,8 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
+import com.worldline.awltech.i18ntools.editor.Activator;
+
 /**
  * Editor's combo label provider.
  * 
@@ -36,7 +38,7 @@ public class EditorComboLabelProvider implements ILabelProvider {
 
 	@Override
 	public Image getImage(Object element) {
-		return null;
+		return Activator.getDefault().getImage("/icons/language.gif");
 	}
 
 	@Override
