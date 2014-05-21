@@ -28,8 +28,8 @@
       version="1.1.1.qualifier"
       provider-name="github.com/awltech">
 
-   <description url="http://www.example.com/description">
-      [Enter Feature Description here.]
+   <description url="https://github.com/awltech/eclipse-i18ntools">
+      Resource Bundle editor. It is based on the enumeration pattern to identify the available messages and the resource bundle. It allows the creation of new messages (by enriching the Enumeration java code) and the creation of new locales too.
    </description>
 
    <copyright url="http://www.example.com/copyright">
