@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: I18NTools Resource Bundle Editor
 Bundle-SymbolicName: com.worldline.awltech.i18ntools.editor;singleton:=true
-Bundle-Version: 2.0.0.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-Activator: com.worldline.awltech.i18ntools.editor.Activator
 Bundle-Vendor: Worldline.com (AWLTech)
 Require-Bundle: org.eclipse.ui,

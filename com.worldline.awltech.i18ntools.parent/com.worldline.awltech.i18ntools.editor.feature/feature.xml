@@ -2,7 +2,7 @@
 <feature
       id="com.worldline.awltech.i18ntools.editor.feature"
       label="I18NTools Resource Bundle Editor"
-      version="2.0.0.qualifier"
+      version="1.1.0.qualifier"
       provider-name="gtihub.com/awltech">
 
    <description url="http://www.example.com/description">
