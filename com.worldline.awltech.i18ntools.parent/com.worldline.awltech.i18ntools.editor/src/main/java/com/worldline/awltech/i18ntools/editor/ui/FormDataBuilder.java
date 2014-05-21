@@ -1,7 +1,7 @@
 /**
- * Optimus, framework for Model Transformation
+ * I18N Tools
  *
- * Copyright (C) 2013 Worldline or third-party contributors as
+ * Copyright (C) 2014 Worldline or third-party contributors as
  * indicated by the @author tags or express copyright attribution
  * statements applied by the authors.
  *
@@ -31,7 +31,7 @@ import org.eclipse.swt.widgets.Control;
  * 
  * @see FormAttachment
  * 
- * @author Maxence Vanbésien (mvaawl@gmail.com)
+ * @author Maxence Vanbï¿½sien (mvaawl@gmail.com)
  * @since 1.0
  * 
  */
