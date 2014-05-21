@@ -25,7 +25,7 @@
 <feature
       id="com.worldline.awltech.i18ntools.wizard.feature"
       label="I18NTools Enumeration Refactoring Wizard"
-      version="1.1.0.qualifier"
+      version="1.1.1.qualifier"
       provider-name="github.com/awltech">
 
    <description url="https://github.com/awltech/eclipse-i18ntools">

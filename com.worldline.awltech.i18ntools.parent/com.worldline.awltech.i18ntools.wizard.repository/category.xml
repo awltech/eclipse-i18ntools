@@ -23,10 +23,10 @@
 
 -->
 <site>
-   <feature url="features/com.worldline.awltech.i18ntools.wizard.feature_1.1.0.qualifier.jar" id="com.worldline.awltech.i18ntools.wizard.feature" version="1.1.0.qualifier">
+   <feature url="features/com.worldline.awltech.i18ntools.wizard.feature_1.1.1.qualifier.jar" id="com.worldline.awltech.i18ntools.wizard.feature" version="1.1.1.qualifier">
       <category name="I18N Tools"/>
    </feature>
-   <feature url="features/com.worldline.awltech.i18ntools.editor.feature_1.1.0.qualifier.jar" id="com.worldline.awltech.i18ntools.editor.feature" version="1.1.0.qualifier">
+   <feature url="features/com.worldline.awltech.i18ntools.editor.feature_1.1.1.qualifier.jar" id="com.worldline.awltech.i18ntools.editor.feature" version="1.1.1.qualifier">
       <category name="I18N Tools"/>
    </feature>
    <category-def name="I18N Tools" label="I18N Tools"/>
