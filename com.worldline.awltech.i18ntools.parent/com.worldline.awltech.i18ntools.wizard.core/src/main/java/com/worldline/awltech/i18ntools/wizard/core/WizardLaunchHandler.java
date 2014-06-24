@@ -33,6 +33,8 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.texteditor.ITextEditor;
 
+import com.worldline.awltech.i18ntools.wizard.core.callbacks.RefactoringJobCallbackPostProcessor;
+
 /**
  * 
  * Eclipse Command Handler for the wizard. This class is used to retrieve the
@@ -87,6 +89,7 @@ public class WizardLaunchHandler extends AbstractHandler {
 		final RefactoringJob resourceBundleHelperJob = new RefactoringJob();
 		resourceBundleHelperJob.setCompilationUnit(compilationUnit).setSelection(offset, length);
 		resourceBundleHelperJob.addJobChangeListener(new AfterRefactoringSourceRelocator(textEditor, offset));
+		resourceBundleHelperJob.addJobChangeListener(new RefactoringJobCallbackPostProcessor(compilationUnit));
 		resourceBundleHelperJob.schedule();
 
 		return null;

@@ -24,6 +24,7 @@
 -->
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="RefactoringJobCallbacks" name="RefactoringJobCallbacks" schema="schema/RefactoringJobCallbacks.exsd"/>
 	<extension
          point="org.eclipse.ui.bindings">
       <key
