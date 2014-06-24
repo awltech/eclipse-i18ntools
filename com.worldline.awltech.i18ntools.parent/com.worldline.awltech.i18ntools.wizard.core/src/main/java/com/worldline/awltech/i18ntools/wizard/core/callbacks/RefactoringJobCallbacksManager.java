@@ -98,7 +98,6 @@ public enum RefactoringJobCallbacksManager {
 								.getLog()
 								.log(new Status(IStatus.WARNING, Activator.PLUGIN_ID,
 										RefactoringWizardMessages.ERROR_LOADING_CALLBACK.value(), e));
-						e.printStackTrace();
 					}
 				}
 			}
