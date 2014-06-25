@@ -25,6 +25,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
+
+import com.worldline.awltech.i18ntools.editor.Activator;
 import com.worldline.awltech.i18ntools.editor.facade.IEditorSaveCallback;
 
 /**
@@ -70,7 +79,28 @@ public enum EditorSaveCallbacksManager {
 	private EditorSaveCallbacksManager() {
 		Collection<IEditorSaveCallback> foundCallbacks = new ArrayList<IEditorSaveCallback>();
 
-		// TODO
+		IExtensionPoint extensionPoint = Platform.getExtensionRegistry().getExtensionPoint(Activator.PLUGIN_ID,
+				EXTENSION_POINT_NAME);
+
+		for (IExtension extension : extensionPoint.getExtensions()) {
+			for (IConfigurationElement configurationElement : extension.getConfigurationElements()) {
+				if (EXTENSION_POINT_ELEMENT.equals(configurationElement.getName())) {
+					try {
+						Object createdExecutableExtension = configurationElement
+								.createExecutableExtension(EXTENSION_POINT_ATTRIBUTE);
+						if (createdExecutableExtension instanceof IEditorSaveCallback) {
+							foundCallbacks.add((IEditorSaveCallback) createdExecutableExtension);
+						}
+					} catch (CoreException e) {
+						Activator
+								.getDefault()
+								.getLog()
+								.log(new Status(IStatus.WARNING, Activator.PLUGIN_ID,
+										"An error occurred while loading callbacks", e));
+					}
+				}
+			}
+		}
 
 		this.registeredCallbacks = Collections.unmodifiableCollection(foundCallbacks);
 	}
