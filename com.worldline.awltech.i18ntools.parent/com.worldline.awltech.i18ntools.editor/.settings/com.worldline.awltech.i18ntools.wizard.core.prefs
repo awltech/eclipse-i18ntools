@@ -1,4 +1,4 @@
-LastLiteralPrefix=LOCALEDIALOG_MESSAGE
-ResourceBundleName=ResourceBundleEditorMessages
-ResourceBundlePackage=com.worldline.awltech.i18ntools.editor.ui
+LastLiteralPrefix=ERROR_EXEC_CALLBACK
+ResourceBundleName=ResourceBundleMessages
+ResourceBundlePackage=com.worldline.awltech.i18ntools.editor
 eclipse.preferences.version=1

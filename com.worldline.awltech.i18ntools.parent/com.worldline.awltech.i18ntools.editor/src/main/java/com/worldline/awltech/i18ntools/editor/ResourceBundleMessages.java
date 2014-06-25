@@ -35,7 +35,7 @@ import java.text.MessageFormat;
  * @generated com.worldline.awltech.i18ntools.wizard
  */
 public enum ResourceBundleMessages {
-	EXCEPTION_SAVEDLOCALE("EXCEPTION_SAVEDLOCALE")
+	EXCEPTION_SAVEDLOCALE("EXCEPTION_SAVEDLOCALE"), ERROR_LOAD_CALLBACK("ERROR_LOAD_CALLBACK"), ERROR_EXEC_CALLBACK("ERROR_EXEC_CALLBACK")
 	;
 
 	/*
