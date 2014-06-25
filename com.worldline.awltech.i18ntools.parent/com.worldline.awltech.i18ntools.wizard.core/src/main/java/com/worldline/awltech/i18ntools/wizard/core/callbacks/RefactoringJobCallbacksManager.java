@@ -23,6 +23,7 @@ package com.worldline.awltech.i18ntools.wizard.core.callbacks;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -64,12 +65,12 @@ public enum RefactoringJobCallbacksManager {
 	/**
 	 * Registered callbacks
 	 */
-	private IRefactoringJobCallback[] registeredCallbacks;
+	private final Collection<IRefactoringJobCallback> registeredCallbacks;
 
 	/**
 	 * @return Registered callbacks
 	 */
-	public IRefactoringJobCallback[] getRegisteredCallbacks() {
+	public Collection<IRefactoringJobCallback> getRegisteredCallbacks() {
 		return this.registeredCallbacks;
 	}
 
@@ -103,7 +104,7 @@ public enum RefactoringJobCallbacksManager {
 			}
 		}
 
-		this.registeredCallbacks = foundCallbacks.toArray(new IRefactoringJobCallback[foundCallbacks.size()]);
+		this.registeredCallbacks = Collections.unmodifiableCollection(foundCallbacks);
 
 	}
 }
