@@ -21,12 +21,15 @@
  */
 package com.worldline.awltech.i18ntools.editor.ui;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Locale;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.JavaConventions;
@@ -61,9 +64,10 @@ import org.eclipse.ui.part.EditorPart;
 import org.eclipse.ui.part.FileEditorInput;
 
 import com.worldline.awltech.i18ntools.editor.Activator;
+import com.worldline.awltech.i18ntools.editor.data.callbacks.EditorSaveCallbacksManager;
 import com.worldline.awltech.i18ntools.editor.data.model.I18NDataLoader;
 import com.worldline.awltech.i18ntools.editor.data.model.I18NResourceBundle;
-import com.worldline.awltech.i18ntools.editor.ui.ResourceBundleEditorMessages;
+import com.worldline.awltech.i18ntools.editor.facade.IEditorSaveCallback;
 
 /**
  * Editor
@@ -83,6 +87,20 @@ public class ResourceBundleEditor extends EditorPart {
 	@Override
 	public void doSave(IProgressMonitor monitor) {
 		resourceBundle.save();
+		Collection<IFile> files = Collections.unmodifiableCollection(this.resourceBundle.getLocales().values());
+		for (IEditorSaveCallback callback : EditorSaveCallbacksManager.INSTANCE.getCallbacks()) {
+			if (callback != null) {
+				try {
+					callback.execute(this.resourceBundle.getEnumeration(), files);
+				} catch (Exception e) {
+					Activator
+							.getDefault()
+							.getLog()
+							.log(new Status(IStatus.WARNING, Activator.PLUGIN_ID,
+									"An error occurred while executing callback", e));
+				}
+			}
+		}
 		firePropertyChange(PROP_DIRTY);
 	}
 
@@ -113,7 +131,7 @@ public class ResourceBundleEditor extends EditorPart {
 		} catch (CoreException e) {
 			throw new PartInitException(ResourceBundleEditorMessages.ERROR_FAILTOPARSECODE.value(), e);
 		}
-		this.setPartName(this.resourceBundle.getName()+".i18n");
+		this.setPartName(this.resourceBundle.getName() + ".i18n");
 	}
 
 	@Override
