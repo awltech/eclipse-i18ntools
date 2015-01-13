@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: I18NTools Enumeration Refactoring Wizard
 Bundle-SymbolicName: com.worldline.awltech.i18ntools.wizard.core;singleton:=true
-Bundle-Version: 1.1.1.qualifier
+Bundle-Version: 1.2.0.qualifier
 Bundle-Activator: com.worldline.awltech.i18ntools.wizard.core.Activator
 Bundle-Vendor: github.com/awltech
 Require-Bundle: org.eclipse.ui,
