@@ -102,10 +102,12 @@ public class I18NEnumVisitor extends ASTVisitor {
 
 	@Override
 	public boolean visit(EnumConstantDeclaration node) {
-		if (node.arguments().size() == 1) {
-			Expression expression = (Expression) node.arguments().get(0);
+		boolean found = false;
+		for (int i = 0;i<node.arguments().size() && !found;i++) {
+			Expression expression = (Expression) node.arguments().get(i);
 			if (expression instanceof StringLiteral) {
 				this.literals.add(((StringLiteral) expression).getLiteralValue());
+				found = true;
 			}
 		}
 		// We return as we have the information we want.
