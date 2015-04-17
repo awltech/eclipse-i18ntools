@@ -91,6 +91,11 @@ public class RefactoringJob extends WorkspaceJob {
 	 * Package containing the Enumeration bound to resource bundle.
 	 */
 	private String resourceBundlePackage;
+	
+	/**
+	 * Tells whether the message should be prefixed by key
+	 */
+	private boolean prefixMessageByKey;
 
 	/**
 	 * Creates the new job instance.
@@ -153,12 +158,13 @@ public class RefactoringJob extends WorkspaceJob {
 		this.resourceBundleName = i18NizeWizard.getResourceBundleName();
 		this.enumerationPrefix = i18NizeWizard.getLiteralPrefix();
 		this.resourceBundlePackage = i18NizeWizard.getResourceBundlePackage();
+		this.prefixMessageByKey = i18NizeWizard.getPrefixMessageByKey();
 
 		// 3. Extract the pattern and arguments from expression
 
 		final ASTExpressionResolver expressionResolver = ASTExpressionResolver.create(nodeFinder);
 		final ResourceBundleWrapper resourceBundleWrapper = new ResourceBundleWrapper(javaProject,
-				this.resourceBundlePackage, this.resourceBundleName);
+				this.resourceBundlePackage, this.resourceBundleName, this.prefixMessageByKey);
 		final boolean isModified = resourceBundleWrapper.replaceLiteral(nodeFinder, this.enumerationPrefix,
 				expressionResolver);
 

@@ -118,6 +118,11 @@ public class ResourceBundleWrapper {
 	private final RefactoringWizardConfiguration configuration;
 
 	/**
+	 * Tells whether the message should be prefixed by its key.
+	 */
+	private boolean prefixMessageByKey;
+
+	/**
 	 * Creates Resource Bundle Wrapper, in specified project.
 	 * 
 	 * @param javaProject
@@ -126,13 +131,15 @@ public class ResourceBundleWrapper {
 	 *            : name of the package that will contain the enumeration
 	 * @param resourceBundleName
 	 *            : used for enumeration and properties file names.
+	 * @param prefixMessageByKey 
 	 */
 	public ResourceBundleWrapper(final IJavaProject javaProject, final String packageName,
-			final String resourceBundleName) {
+			final String resourceBundleName, boolean prefixMessageByKey) {
 		this.javaProject = javaProject;
 		this.packageName = packageName;
 		this.resourceBundleName = resourceBundleName;
 		this.configuration = new RefactoringWizardConfiguration(javaProject.getProject());
+		this.prefixMessageByKey = prefixMessageByKey;
 	}
 
 	/**
@@ -358,8 +365,13 @@ public class ResourceBundleWrapper {
 			final Expression newParameter = ASTTreeCloner.clone(parameter);
 			replacement.arguments().add(newParameter);
 		}
-
-		this.properties.put(literalName, resolver.getMessagePattern());
+		
+		String messagePattern = resolver.getMessagePattern();
+		if (this.prefixMessageByKey) {
+			messagePattern = String.format("[%s] %s", literalName, messagePattern);
+		}
+		
+		this.properties.put(literalName, messagePattern);
 		return true;
 	}
 

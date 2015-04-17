@@ -85,6 +85,8 @@ public class RefactoringWizard {
 	private String javaSourceFolder;
 
 	private String resourceFolder;
+	
+	private boolean prefixMessageByKey;
 
 	public boolean open() {
 		this.display = Display.getCurrent() != null ? Display.getCurrent() : Display.getDefault();
@@ -178,8 +180,14 @@ public class RefactoringWizard {
 		final Text enumPrefixText = new Text(messageGroup, SWT.BORDER);
 		enumPrefixText.setText(configuration.getLastLiteralPrefix());
 		FormDataBuilder.on(enumPrefixText).top(resourceBundleText).left(enumPrefixLabel)
-				.width(RefactoringWizard.TEXT_WIDTH).bottom();
+				.width(RefactoringWizard.TEXT_WIDTH);
 
+		final Button prefixMessageByKeyButton = new Button(messageGroup, SWT.CHECK);
+		prefixMessageByKeyButton.setText("Prefix message by its key");
+		prefixMessageByKeyButton.setToolTipText("When enabled, the message in the Resource Bundle properties file will be prefixed by the message identifier.");
+		FormDataBuilder.on(prefixMessageByKeyButton).left().right().top(enumPrefixText).bottom();
+		prefixMessageByKeyButton.setSelection(configuration.getPrefixMessageByKey());
+		
 		// Advanced Group
 		final Group advancedGroup = new Group(this.shell, SWT.NONE);
 		advancedGroup.setText(RefactoringWizardMessages.GROUP_ADVANCED_TITLE.value());
@@ -222,12 +230,14 @@ public class RefactoringWizard {
 				RefactoringWizard.this.packageName = resourceBundlePackageText.getText().trim();
 				RefactoringWizard.this.javaSourceFolder = sourceFolderText.getText().trim();
 				RefactoringWizard.this.resourceFolder = resourceFolderText.getText().trim();
+				RefactoringWizard.this.prefixMessageByKey = prefixMessageByKeyButton.getSelection();
 
 				configuration.setLastLiteralPrefix(RefactoringWizard.this.literalPrefix);
 				configuration.setResourceBundleName(RefactoringWizard.this.resourceBundleName);
 				configuration.setResourceBundlePackage(RefactoringWizard.this.packageName);
 				configuration.setJavaSourceFolder(RefactoringWizard.this.javaSourceFolder);
 				configuration.setResourceSourceFolder(RefactoringWizard.this.resourceFolder);
+				configuration.setPrefixMessageByKey(RefactoringWizard.this.prefixMessageByKey);
 
 				RefactoringWizard.this.isOK = true;
 				RefactoringWizard.this.keepOpen = false;
@@ -269,13 +279,15 @@ public class RefactoringWizard {
 					RefactoringWizard.this.packageName = resourceBundlePackageText.getText().trim();
 					RefactoringWizard.this.javaSourceFolder = sourceFolderText.getText().trim();
 					RefactoringWizard.this.resourceFolder = resourceFolderText.getText().trim();
-
+					RefactoringWizard.this.prefixMessageByKey = prefixMessageByKeyButton.getSelection();
+					
 					configuration.setLastLiteralPrefix(RefactoringWizard.this.literalPrefix);
 					configuration.setResourceBundleName(RefactoringWizard.this.resourceBundleName);
 					configuration.setResourceBundlePackage(RefactoringWizard.this.packageName);
 					configuration.setJavaSourceFolder(RefactoringWizard.this.javaSourceFolder);
 					configuration.setResourceSourceFolder(RefactoringWizard.this.resourceFolder);
-
+					configuration.setPrefixMessageByKey(RefactoringWizard.this.prefixMessageByKey);
+					
 					RefactoringWizard.this.isOK = true;
 					RefactoringWizard.this.keepOpen = false;
 				}
@@ -324,4 +336,10 @@ public class RefactoringWizard {
 	public String getResourceBundlePackage() {
 		return this.packageName;
 	}
+	
+	
+	public boolean getPrefixMessageByKey() {
+		return this.prefixMessageByKey;
+	}
+	
 }

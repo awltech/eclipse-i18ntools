@@ -75,6 +75,8 @@ public class RefactoringWizardConfiguration {
 
 	private static final String RESOURCES_SOURCE_FOLDER_NAME = "ResourceSourceFolder";
 
+	private static final String PREFIX_MESSAGE_BY_KEY = "PrefixMessageByKey";
+
 	private final IEclipsePreferences preferences;
 
 	private final IProject project;
@@ -109,6 +111,10 @@ public class RefactoringWizardConfiguration {
 		return this.preferences.get(RefactoringWizardConfiguration.RESOURCES_SOURCE_FOLDER_NAME, this.getSourceFolder(
 				RefactoringWizardConfiguration.SRC_MAIN_RESOURCES, RefactoringWizardConfiguration.RESOURCES,
 				RefactoringWizardConfiguration.SRC, null));
+	}
+
+	public boolean getPrefixMessageByKey() {
+		return this.preferences.getBoolean(RefactoringWizardConfiguration.PREFIX_MESSAGE_BY_KEY, false);
 	}
 
 	/**
@@ -246,6 +252,22 @@ public class RefactoringWizardConfiguration {
 					.getLog()
 					.log(new Status(IStatus.WARNING, Activator.PLUGIN_ID,
 							RefactoringWizardMessages.WARNING_FLUSH_LOCALPREFS.value(), e));
+		}
+	}
+
+	public void setPrefixMessageByKey(final boolean prefixMessageByKey) {
+		final boolean currentValue = this.getPrefixMessageByKey();
+		if (currentValue != prefixMessageByKey) {
+			this.preferences.putBoolean(RefactoringWizardConfiguration.PREFIX_MESSAGE_BY_KEY, prefixMessageByKey);
+			try {
+				this.preferences.flush();
+			} catch (final BackingStoreException e) {
+				Activator
+						.getDefault()
+						.getLog()
+						.log(new Status(IStatus.WARNING, Activator.PLUGIN_ID,
+								RefactoringWizardMessages.WARNING_FLUSH_LOCALPREFS.value(), e));
+			}
 		}
 	}
 }
