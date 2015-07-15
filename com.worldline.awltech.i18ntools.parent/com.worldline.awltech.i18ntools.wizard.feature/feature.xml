@@ -26,7 +26,7 @@
       id="com.worldline.awltech.i18ntools.wizard.feature"
       label="I18NTools Enumeration Refactoring Wizard"
       version="1.1.1.qualifier"
-      provider-name="github.com/awltech">
+      provider-name="Worldline.com">
 
    <description url="https://github.com/awltech/eclipse-i18ntools">
 This tool proposes the possibility to refactor the source code, to support internationalization through source code refactoring.
