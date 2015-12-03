@@ -52,7 +52,7 @@ public final class ASTTreeCloner {
 		for (final Object o : structuralPropertiesForType) {
 			final StructuralPropertyDescriptor descriptor = (StructuralPropertyDescriptor) o;
 			if (descriptor.isChildListProperty()) {
-				final List<Object> list = (List<Object>) astNode.getStructuralProperty(descriptor);
+				final List<Object> list = (List<Object>) createdInstance.getStructuralProperty(descriptor);
 				for (final Object propertyValue : (List<Object>) astNode.getStructuralProperty(descriptor)) {
 					list.add(propertyValue instanceof ASTNode ? ASTTreeCloner.clone((ASTNode) propertyValue)
 							: propertyValue);
