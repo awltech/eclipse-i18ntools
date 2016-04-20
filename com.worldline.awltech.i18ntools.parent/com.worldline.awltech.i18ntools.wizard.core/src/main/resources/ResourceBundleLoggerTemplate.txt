@@ -3,6 +3,7 @@
  */
 package {0};
 
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -62,27 +63,57 @@ public enum {1} '{'
 		switch (this.messageLevel) '{'
 			case TRACE:
 				if ({1}.LOGGER.isTraceEnabled()) '{'
-					{1}.LOGGER.trace(this.message(), args);
+					if (args.length > 0 && args[args.length - 1] instanceof Throwable) '{'
+						Object[] trunkedObjects = Arrays.copyOf(args, args.length - 1);
+						Throwable throwable = (Throwable) objects[args.length - 1];
+						{1}.LOGGER.trace(this.message(), trunkedObjects, throwable);
+					'}' else '{'
+						{1}.LOGGER.trace(this.message(), args);
+					'}'	
 				'}'
 				break;
 			case DEBUG:
 				if ({1}.LOGGER.isDebugEnabled()) '{'
-					{1}.LOGGER.debug(this.message(), args);
+					if (args.length > 0 && args[args.length - 1] instanceof Throwable) '{'
+						Object[] trunkedObjects = Arrays.copyOf(args, args.length - 1);
+						Throwable throwable = (Throwable) objects[args.length - 1];
+						{1}.LOGGER.debug(this.message(), trunkedObjects, throwable);
+					'}' else '{'
+						{1}.LOGGER.debug(this.message(), args);
+					'}'	
 				'}'
 				break;
 			case INFO:
 				if ({1}.LOGGER.isInfoEnabled()) '{'
-					{1}.LOGGER.info(this.message(), args);
+				if (args.length > 0 && args[args.length - 1] instanceof Throwable) '{'
+						Object[] trunkedObjects = Arrays.copyOf(args, args.length - 1);
+						Throwable throwable = (Throwable) objects[args.length - 1];
+						{1}.LOGGER.info(this.message(), trunkedObjects, throwable);
+					'}' else '{'
+						{1}.LOGGER.info(this.message(), args);
+					'}'	
 				'}'
 				break;
 			case WARN:
 				if ({1}.LOGGER.isWarnEnabled()) '{'
-					{1}.LOGGER.warn(this.message(), args);
+					if (args.length > 0 && args[args.length - 1] instanceof Throwable) '{'
+						Object[] trunkedObjects = Arrays.copyOf(args, args.length - 1);
+						Throwable throwable = (Throwable) objects[args.length - 1];
+						{1}.LOGGER.warn(this.message(), trunkedObjects, throwable);
+					'}' else '{'
+						{1}.LOGGER.warn(this.message(), args);
+					'}'	
 				'}'
 				break;
 			case ERROR:
 				if ({1}.LOGGER.isErrorEnabled()) '{'
-					{1}.LOGGER.error(this.message(), args);
+					if (args.length > 0 && args[args.length - 1] instanceof Throwable) '{'
+						Object[] trunkedObjects = Arrays.copyOf(args, args.length - 1);
+						Throwable throwable = (Throwable) objects[args.length - 1];
+						{1}.LOGGER.error(this.message(), trunkedObjects, throwable);
+					'}' else '{'
+						{1}.LOGGER.error(this.message(), args);
+					'}'	
 				'}'
 				break;
 		'}'
