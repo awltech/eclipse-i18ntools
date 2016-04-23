@@ -35,7 +35,7 @@
 		<platform-tag>e43x</platform-tag>
 		<maven.javadoc.skip>true</maven.javadoc.skip>
 		<release-type>SNAPSHOT</release-type>
-		<format>'N'yyyyMMdd'-'HHmm'-${platform-tag}-${release-type}'</format>
+		<format>'N'yyyyMMddHHmm'-${release-type}'</format>
 	</properties>
 
 	<repositories>
